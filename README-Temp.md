@@ -723,7 +723,7 @@ Số lượng ước tính: 2-3 tests
 
 
 ```
-2.	Read (GET)
+Read (GET)
 -Kiểm tra thành công: Lấy dữ liệu khi có bản ghi
 -Kiểm tra thất bại: Lấy dữ liệu khi không có bản ghi 
 -Kiểm tra phân trang, lọc, sắp xếp 
@@ -735,7 +735,7 @@ Số lượng ước tính: 2-3 tests.
 
 
 ```
-3.	Update (PUT/PATCH)
+Update (PUT/PATCH)
 -Kiểm tra thành công: Cập nhật dữ liệu hợp lệ.
 -Kiểm tra thất bại: Cập nhật với dữ liệu không hợp lệ.
 -Kiểm tra cập nhật bản ghi không tồn tại.
@@ -746,7 +746,7 @@ Số lượng ước tính: 2-3 tests.
 
 ```
 Số lượng ước tính: 2-3 tests.
-4.	Delete (DELETE)
+Delete (DELETE)
 -Kiểm tra thành công: Xóa bản ghi tồn tại.
 -Kiểm tra thất bại: Xóa bản ghi không tồn tại 
 
