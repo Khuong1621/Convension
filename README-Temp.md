@@ -697,14 +697,13 @@ public class CmmsAssetController : ApiController
 
 
 # Unit Test Require
-
-Các API CRUD cơ bản :
+## Các API CRUD cơ bản :
 1.	Create (POST)
 2.	Read (GET)
 3.	Update (PUT/PATCH)
 4.	Delete (DELETE)
-Số lượng unit test cho mỗi API
-1.	Create (POST)
+## Số lượng unit test cho mỗi API
+Create (POST)
 
 - File việt hóa 
 
