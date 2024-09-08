@@ -696,23 +696,26 @@ public class CmmsAssetController : ApiController
 
 
 
-# Unit Test Require  (FE)
+# Unit Test Require
 
-Các API CRUD cơ bản
+Các API CRUD cơ bản :
 1.	Create (POST)
 2.	Read (GET)
 3.	Update (PUT/PATCH)
 4.	Delete (DELETE)
 Số lượng unit test cho mỗi API
 1.	Create (POST)
--Kiểm tra thành công: Thêm mới một bản ghi hợp lệ.
 
--Kiểm tra thất bại: Gửi dữ liệu không hợp lệ (thiếu trường, sai định dạng, v.v.).
--Kiểm tra với dữ liệu trùng lặp (nếu cần)
+- File việt hóa 
+
+- Kiểm tra thành công: Thêm mới một bản ghi hợp lệ
+
+- Kiểm tra thất bại: Gửi dữ liệu không hợp lệ 
+- Kiểm tra với dữ liệu trùng lặp 
 
 
 
-Số lượng ước tính: 2-3 tests.
+Số lượng ước tính: 2-3 tests
 
 
 
@@ -722,9 +725,9 @@ Số lượng ước tính: 2-3 tests.
 
 ```
 2.	Read (GET)
--Kiểm tra thành công: Lấy dữ liệu khi có bản ghi.
--Kiểm tra thất bại: Lấy dữ liệu khi không có bản ghi (404 Not Found).
--Kiểm tra phân trang, lọc, sắp xếp (nếu API hỗ trợ).
+-Kiểm tra thành công: Lấy dữ liệu khi có bản ghi
+-Kiểm tra thất bại: Lấy dữ liệu khi không có bản ghi 
+-Kiểm tra phân trang, lọc, sắp xếp 
 Số lượng ước tính: 2-3 tests.
 
 
@@ -746,8 +749,7 @@ Số lượng ước tính: 2-3 tests.
 Số lượng ước tính: 2-3 tests.
 4.	Delete (DELETE)
 -Kiểm tra thành công: Xóa bản ghi tồn tại.
--Kiểm tra thất bại: Xóa bản ghi không tồn tại (404 Not Found).
-
+-Kiểm tra thất bại: Xóa bản ghi không tồn tại 
 
 ```csharp
 
