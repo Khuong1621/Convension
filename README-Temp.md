@@ -725,19 +725,95 @@ Số lượng ước tính: 2-3 tests
 ```
 Read (GET)
 - Kiểm tra thành công: Lấy dữ liệu khi có bản ghi
+
+
+```csharp
+
+        [TestMethod()]
+        public async Task GetAll_Success_Test()
+        {
+            // Act
+            var actual = await _controller.GetAll(textSearch: null, isUse: true);
+
+            // Assert
+            var okResult = actual as OkObjectResult;
+            Assert.AreEqual(200, okResult.StatusCode);
+        }
+```
+
 - Kiểm tra thất bại: Lấy dữ liệu khi không có bản ghi 
 - Kiểm tra phân trang, lọc, sắp xếp 
 Số lượng ước tính: 2-3 tests.
 
 
 ```csharp
+        [TestMethod()]
 
+        public async Task GetAll_SuccessNoRecord_Test()
+        {
+            // Act
+            var actual = await _controller.GetAll(textSearch: "129381924", isUse: true);
 
+            // Assert
+            var okResult = actual as OkObjectResult;
+            Assert.IsNotNull(actual);
+            Assert.AreEqual(200, okResult.StatusCode);
+        }
 
 ```
 Update (PUT/PATCH)
 - Kiểm tra thành công: Cập nhật dữ liệu hợp lệ.
+```csharp
+
+ [TestMethod()]
+
+ public async Task UpdateRange_Success_Test()
+ {
+     // Arrange
+     var req = new List<LabelUpdateReq>
+  {
+      new LabelUpdateReq { Name = "City A", LabelId = Guid.NewGuid().ToString(),IsUse=true },
+      new LabelUpdateReq { Name = "City B", LabelId =  Guid.NewGuid().ToString(),IsUse=true }
+  };
+
+     // Act
+     var actual = await _controller.Update(req);
+
+     // Assert
+     var okResult = actual as OkObjectResult;
+     Assert.IsNotNull(actual);
+     Assert.AreEqual(200, okResult.StatusCode);
+
+ }
+```
+
 - Kiểm tra thất bại: Cập nhật với dữ liệu không hợp lệ.
+
+```csharp
+
+
+ [TestMethod()]
+
+ public async Task UpdateRange_FailExistedName_Test()
+ {
+     // Arrange
+     var req = new List<LabelUpdateReq>
+  {
+      new LabelUpdateReq { Name = "City A", LabelId = Guid.NewGuid().ToString(),IsUse=true },
+      new LabelUpdateReq { Name = "City A", LabelId =  Guid.NewGuid().ToString(),IsUse=true }
+  };
+
+     // Act
+     var actual = await _controller.Update(req);
+
+     // Assert
+     var okResult = actual as OkObjectResult;
+     Assert.AreEqual(400, okResult.StatusCode);
+
+
+ }
+ ```
+
 - Kiểm tra cập nhật bản ghi không tồn tại.
 
 ```csharp
