@@ -742,7 +742,6 @@ Read (GET)
 ```
 
 - Kiểm tra thất bại: Lấy dữ liệu khi không có bản ghi 
-- Kiểm tra phân trang, lọc, sắp xếp 
 Số lượng ước tính: 2-3 tests.
 
 
@@ -761,6 +760,8 @@ Số lượng ước tính: 2-3 tests.
         }
 
 ```
+- Kiểm tra phân trang, lọc, sắp xếp .(nếu có)
+
 Update (PUT/PATCH)
 - Kiểm tra thành công: Cập nhật dữ liệu hợp lệ.
 ```csharp
