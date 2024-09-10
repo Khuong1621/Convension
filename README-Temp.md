@@ -1,11 +1,14 @@
 # Cách đặt tên commmit
+
 Link tham khảo(https://viblo.asia/p/lam-the-nao-de-viet-conventional-commits-cho-de-su-dung-07LKXbb2lV4)
 Các thành phần type, description là bắt buộc cần có trong commit message, optional là tùy chọn có hoặc không có cũng được
+
 - type: từ khóa để phân loại commit là feature, fix bug, refactor.
 - scope: cũng được dùng để phân loại commit, vùng ảnh hưởng của commit, trả lời câu hỏi: commit này refactor|fix cái gì? được đặt trong cặp ngoặc đơn ngay sau type. VD: feat(authentication):, fix(parser):
--description: là mô tả ngắn về những gì sẽ bị sửa đổi trong commit đấy
+  -description: là mô tả ngắn về những gì sẽ bị sửa đổi trong commit đấy
 - body: là mô tả dài và chi tiết hơn, cần thiết khi description chưa thể nói rõ hết được, có thể thêm phần ghi chú bằng các keyword
 - footer: một số thông tin mở rộng như số ID của pull request, issue.. được quy định theo conventional
+
 ```
 <type>[optional scope]: [< jira - task - id >] < description >
 
@@ -13,7 +16,9 @@ Các thành phần type, description là bắt buộc cần có trong commit mes
 
 [optional footer]
 ```
+
 Example
+
 ```
 feat: [TSW-223] add validate of A feature
 
@@ -22,11 +27,14 @@ fix: [TSW-223] fix die dashboard page
 feat(feature_a): [TSW-223] add validate of A1 feature
 
 ```
+
 # Coding Convention (C#)
 
 ## UpperCamelCase
+
 - Sử dụng cho đặt tên file.
 - Sử dụng cho public methods và properties.
+
 ```csharp
 public class DataService
 {
@@ -35,7 +43,6 @@ public class DataService
     public string Address { get; set; }
 }
 ```
-
 
 -Sử dụng khi đặt tên `class`, `record`, hoặc `struct`.
 
@@ -90,8 +97,11 @@ public class ExampleEvents
     }
 }
 ```
+
 ### UpperCamelCase
+
 Sử dụng cho các scope variable.
+
 ```csharp
 public async Task<int> Update(SystemHelpModel model)
 {
@@ -101,6 +111,7 @@ public async Task<int> Update(SystemHelpModel model)
     return 1;
 }
 ```
+
 ### Camel case
 
 Sử dụng khi `private` hoặc `internal` fields, và thêm prefix `_`.
@@ -152,6 +163,7 @@ DoSomething(foo: "someString", bar: 1);
 ## Quy tắc comment
 
 -Những hàm phức tạp cần mô tả rõ chức năng.
+
 - Sử dụng `///` để mô tả chức năng của field. (VS Code Extension).
 - Đối với `method` cần mô tả thêm ý nghĩa có giá trị trả về (nếu có)
 
@@ -202,12 +214,15 @@ public string Address {get; set;}
 [MaxLength(128)]
 public string IdUnit { get; set; }
 ```
+
 ## Quy tắc viết Unit Test
+
 - Mỗi `Action` trong `Controller` bắt buộc phải có ít nhất 1 `Unit test`.
 - Viết test case đúng chức năng của một `Action` trong `Controller`.
 - Không sử dụng `decouple` `Action` trong `Controller` trong một Unit test.
+
 ```csharp
-public class SystemItemTestController : InitHttpContextController<SystemItemController> 
+public class SystemItemTestController : InitHttpContextController<SystemItemController>
 {
 
     public SystemItemTestController() : base(new DatabaseFixture())
@@ -234,7 +249,7 @@ public class SystemItemTestController : InitHttpContextController<SystemItemCont
         });
 
         var identity = new GenericIdentity("TestUser", "UnitTest");
-        var contextUser = new ClaimsPrincipal(identity); 
+        var contextUser = new ClaimsPrincipal(identity);
         controller.ControllerContext = new ControllerContext
         {
             HttpContext = new DefaultHttpContext { User = contextUser }
@@ -252,6 +267,7 @@ public class SystemItemTestController : InitHttpContextController<SystemItemCont
     }
 }
 ```
+
 ## Quy tắc khác
 
 - Khi `method` bị khai báo quá 3 lần thì nên viết lại tại `Helpers`
@@ -264,6 +280,7 @@ SysItemModel.cs
 SysItemPart.cs
 InventoryItemModel.cs
 ```
+
 ```csharp
 /// <summary>
 /// Lấy dữ liệu.
@@ -296,6 +313,7 @@ InventoryItemModel.cs
 
 
 ```
+
 - Controller chỉ chức business logic không tương tác với Database
 - Controller bắt buộc phải có Http Method và cần mô tả chi tiết prams, chức năng của controller
 
@@ -335,9 +353,11 @@ public IActionResult GetListUse()
 ```
 
 ## Cấu trúc source .Net + Angular
+
 - Repository: `Chứa những method cơ bản (CRUD) liên quan đến database`, có thể bổ sung thêm method nếu cần thiết. `Không được viết business logic`.
 - Service: `Chứa những method liên quan đến business logic`, có thể bổ sung thêm method nếu cần thiết. `Giao tiếp trực tiếp với tầng Repository`.
 - Controller: `Sử dụng các method Service`. `Không giao tiếp trực tiếp với Repository`.`Không chứa business logic`.
+
 ```
     SmartFactory
     ├── Api
@@ -346,28 +366,28 @@ public IActionResult GetListUse()
     ├── CrossCutting
     │   ├── CrossCutting.IoC
     │   │   └── NativeInjector.cs                               # Khai báo DI
-    │   ├── CrossCutting.Bus                               
-    ├── Infrastructure                                      
+    │   ├── CrossCutting.Bus
+    ├── Infrastructure
     │   ├── Core
     │   ├── DataAccess
-    │   │   │   ├── Contexts 
+    │   │   │   ├── Contexts
     │   │   │   │   │   ├── SystemDbContext.cs                  # Thêm các bảng của module System
-    │   │   │   │   │   ├── ApplicationDbContext.cs            
-    │   │   │   │   │   └── ...   
-    │   │   │   ├── Databases 
-    │   │   │   │   ├── System 
+    │   │   │   │   │   ├── ApplicationDbContext.cs
+    │   │   │   │   │   └── ...
+    │   │   │   ├── Databases
+    │   │   │   │   ├── System
     │   │   │   │   │   ├── SystemCommonCodeDb.cs               # Danh sách bảng của database module System
     │   │   │   │   │   ├── SystemPageItemDb.cs
-    │   │   │   │   │   └── ... 
-    │   │   │   └── ...   
-    ├── Modules  
-    │   ├── Systems                                 
-    │   │   │   ├── Appplication                        
-    │   │   │   │   ├── Controllers 
+    │   │   │   │   │   └── ...
+    │   │   │   └── ...
+    ├── Modules
+    │   ├── Systems
+    │   │   │   ├── Appplication
+    │   │   │   │   ├── Controllers
     │   │   │   │   │   ├── SystemAccountController.cs          # Controller
     │   │   │   │   │   └── ...
     │   │   │   ├── Domain
-    │   │   │   │   ├── Services 
+    │   │   │   │   ├── Services
     │   │   │   │   │   ├── SystemAccountService.cs             # Mỗi Controller sẽ khai báo ít nhất 1 service
     │   │   │   │   │   └── ...
     │   │   │   ├── Infrastructure
@@ -381,6 +401,7 @@ public IActionResult GetListUse()
     │   │   │   │   │   ├── SystemUserRepo.cs                   # Mỗi table (DB) đều có 1 repo riêng.
     │   └── ...
 ```
+
 # Coding Convention (Typescript)
 
 | Style          | Category                                                           |
@@ -567,17 +588,16 @@ String? avatarPath;
       │   └── ...
       └── translations                                  # Cấu hình đa ngôn ngữ
 
-
-
 # Update Convention - 18/8/2024 (C#)
-
 
 - Thay đổi cách đặt tên: tên class database sẽ mang tiền tố là tên Module ,các tên ở các lớp khác sẽ lược bỏ phần tiền tố đi.(kể cả tên file)
 - Gộp tất cả các module về cùng một folder chứa , có tên Master.
 
 ## Database
+
 - Namespace phải đặt đúng vị trí , project , folder.
 - Thuộc tính phải đặt tên đúng chính tả và đặt bằng tiếng Anh.
+
 ```csharp
 namespace DataAccess.Databases.Master;
 
@@ -588,7 +608,8 @@ public class MasterVendor
     public string Address { get; set; }
 }
 ```
-- Type phải phân loại ứng với từng action  : CreateReq , UpdateReq.
+
+- Type phải phân loại ứng với từng action : CreateReq , UpdateReq.
 - Type phải được đưa về đồng cấp , ngoại trừ kiểu mảng . Và cách dặt tên tương ứng ví dụ sau:
 
 ```csharp
@@ -602,7 +623,9 @@ public class VendorRes
 
 }
 ```
+
 ## Service và Repo
+
 - Với tác vụ bất đồng bộ bắt buộc dùng async , await. Tên phương thức phải mang hậu tố là Async .
 - Các đối số của hàm , phải trình bày dưới dạng Lower Camel -case
 
@@ -614,6 +637,7 @@ public interface ICmmsAssetActivityService : IDomainService
     Task<bool> DeleteAsync(string assetId, string assetActivityStatusId);
 }
 ```
+
 ## Controller
 
 - Mỗi controller là một tính năng riêng biệt.
@@ -628,104 +652,156 @@ public interface ICmmsAssetActivityService : IDomainService
 public class CmmsAssetController : ApiController
 ```
 
-
-
-
-
 # Coding Convention (FE)
 
 - Bỏ tiền tố là tên Module , viết ngắn gọn tên tính năng.
 - Đặt tên component theo feature , tương tự với tên file , tên selector theo định dạng kebab-case.
-- Biến : 
-    +   Đặt tên bắt buộc là kiểu lower Camel-case: assetType, unsubcribeAll$ .
-    +   Kiểu mảng(gắn thêm s phía sau): locatons, assets, activities.
-    +   Kiểu bool(mang tiền tố là is): isUse, isActive.
-    +   Một số trường hợp phải trình bày :Kiểu enum(ghi rõ những giá trị cụ thể).
-    +   Phạm vi (scope) là private , chỉ sử dụng ở component thì thêm '_' vào trước tên: _transloco , _leaflet.
+- Biến :
+
+  - Đặt tên bắt buộc là kiểu lower Camel-case: assetType, unsubcribeAll$ .
+  - Kiểu mảng(gắn thêm s phía sau): locatons, assets, activities.
+  - Kiểu bool(mang tiền tố là is): isUse, isActive.
+  - Một số trường hợp phải trình bày :Kiểu enum(ghi rõ những giá trị cụ thể).
+  - Phạm vi (scope) là private , chỉ sử dụng ở component thì thêm '\_' vào trước tên: \_transloco , \_leaflet.
 
 - Hàm (Function):
-    +   Đặt tên bắt buộc là kiểu lower Camel-case 
-    +   Đặt tên có ý nghĩa, phải là động từ với tất cả các hàm.
-    +   Mỗi hàm chỉ thực hiện 1 nhiệm vụ theo tên hàm , nếu phức tạp thì chia nhỏ logic.
-    +   Input , Output của hàm , đều phải chỉ định type.
-- Route: 
-    +   Đặt tên bắt buộc là kiểu lower Camel-case.
-    +   Navigate tới route có Mã thì phải có encode. 
-- Quy tắc chung: 
-    +   Inject Service phải có unsubcribeAll ở giai đoạn destroy của component.
-    +   Mỗi tính năng là một module, routing riêng, đặc biệt hơn làm 1 component standalone.
-    +   Biến loading là cần thiết đối với tác vụ cần chờ phản hồi từ server , cập nhật biến loading bằng .fnalize(Rxjs).
-    +   Mat component sẽ là thành phần chính. Màu primary thì phải ghi primary , phân biệt với màu thường.
-    +   Nztable phân trang , index phải đi cùng với PageSize và PageNumber.
-    +   Hạn chế Import ShareModule , sẽ phải nạp module không cần thiết cho component.
-- File việt hóa : 
-    +   Đặt tên bắt buộc là kiểu lower Camel-case.
-    +   Bổ sung vào từ điển vào vị trí cuối cùng ( tránh conflict dẫn đến mất từ).
-    +   Bổ sung vào từ điển vào vị trí cuối cùng ( tránh conflict dẫn đến mất từ).
-    +   Sử dụng lại từ đã có.
-    +   Không phân level , ghi trực tiếp một dòng:
-        ```csharp
-        {
-            "cmms":{
-                "meter":"Đồng hồ đo",
-            }
-        }
+  - Đặt tên bắt buộc là kiểu lower Camel-case
+  - Đặt tên có ý nghĩa, phải là động từ với tất cả các hàm.
+  - Mỗi hàm chỉ thực hiện 1 nhiệm vụ theo tên hàm , nếu phức tạp thì chia nhỏ logic.
+  - Input , Output của hàm , đều phải chỉ định type.
+- Route:
+  - Đặt tên bắt buộc là kiểu lower Camel-case.
+  - Navigate tới route có Mã thì phải có encode.
+- Quy tắc chung:
+  - Inject Service phải có unsubcribeAll ở giai đoạn destroy của component.
+  - Mỗi tính năng là một module, routing riêng, đặc biệt hơn làm 1 component standalone.
+  - Biến loading là cần thiết đối với tác vụ cần chờ phản hồi từ server , cập nhật biến loading bằng .fnalize(Rxjs).
+  - Mat component sẽ là thành phần chính. Màu primary thì phải ghi primary , phân biệt với màu thường.
+  - Nztable phân trang , index phải đi cùng với PageSize và PageNumber.
+  - Hạn chế Import ShareModule , sẽ phải nạp module không cần thiết cho component.
+- File việt hóa :
 
-        sửa lại
-        {
-            "cmms.meter":"Đồng hồ đo"
-        }
-        ```
+  - Đặt tên bắt buộc là kiểu lower Camel-case.
+  - Bổ sung vào từ điển vào vị trí cuối cùng ( tránh conflict dẫn đến mất từ).
+  - Bổ sung vào từ điển vào vị trí cuối cùng ( tránh conflict dẫn đến mất từ).
+  - Sử dụng lại từ đã có.
+  - Không phân level , ghi trực tiếp một dòng:
 
-        .   Phân biệt được từ khóa nào dùng chung , hoặc đặc thù cho module đó("error","placeholder","cmms","system","message"): 
-         ```csharp
-        {
-            "cmms.meter":"Đồng hồ đo",
-            "createDate":"Ngày tạo", 
-            "master.vendor":"Nhà cung cấp"
+    ```csharp
+    {
+        "cmms":{
+            "meter":"Đồng hồ đo",
         }
-        ```
+    }
+
+    sửa lại
+    {
+        "cmms.meter":"Đồng hồ đo"
+    }
+    ```
+
+    . Phân biệt được từ khóa nào dùng chung , hoặc đặc thù cho module đó("error","placeholder","cmms","system","message"):
+
+    ```csharp
+    {
+       "cmms.meter":"Đồng hồ đo",
+       "createDate":"Ngày tạo",
+       "master.vendor":"Nhà cung cấp"
+    }
+    ```
+
 - Mã tự sinh : không sinh ở Front End .
 
 - Services và Type:
-    + Đặt tên định dạng Upper CamelCase, tên file : kebab-case.
-    + Đặt đúng tên như Controller khai báo, kể cả type.
+
+  - Đặt tên định dạng Upper CamelCase, tên file : kebab-case.
+  - Đặt đúng tên như Controller khai báo, kể cả type.
 
 - Popup :
-    + Đặt tên định dạng Upper CamelCase, tên thì phải có hậu tố popup để phân biệt với component.
-
-
+  - Đặt tên định dạng Upper CamelCase, tên thì phải có hậu tố popup để phân biệt với component.
 
 # Unit Test Require
-## Các API CRUD cơ bản :
-1.	Create (POST)
-2.	Read (GET)
-3.	Update (PUT/PATCH)
-4.	Delete (DELETE)
-## Số lượng unit test cho mỗi API
-Create (POST)
 
-- File việt hóa 
+## Các API CRUD cơ bản :
+
+1. Create (POST)
+2. Read (GET)
+3. Update (PUT/PATCH)
+4. Delete (DELETE)
+
+## Số lượng unit test cho mỗi API
+
+Create (POST)
 
 - Kiểm tra thành công: Thêm mới một bản ghi hợp lệ
 
-- Kiểm tra thất bại: Gửi dữ liệu không hợp lệ 
-- Kiểm tra với dữ liệu trùng lặp 
+```csharp
+[TestMethod()]
+public async Task Create_Success_Test()
+{
+    // Arrange
+    var newLabel = new LabelCreateReq
+    {
+        Name = "City C",
+        IsUse = true
+    };
+
+    var createdLabel = new Label
+    {
+        LabelId = Guid.NewGuid().ToString(),
+        Name = "City C",
+        IsUse = true
+    };
 
 
+
+    var _controller = new LabelsController(mockService.Object);
+
+    // Act
+    var actual = await _controller.Create(newLabel);
+
+    // Assert
+    var createdResult = actual as CreatedAtActionResult;
+    Assert.IsNotNull(actual);
+    Assert.AreEqual(201, createdResult.StatusCode);
+    var resultData = createdResult.Value as Label;
+    Assert.AreEqual("City C", resultData.Name);
+}
+```
+
+- Kiểm tra thất bại: Gửi dữ liệu không hợp lệ
+
+```csharp
+[TestMethod()]
+public async Task Create_Fail_Test()
+{
+    // Arrange
+    var newLabel = new LabelCreateReq
+    {
+        Name = "City A", // Simulate name conflict
+        IsUse = true
+    };
+
+    var _controller = new LabelsController(mockService.Object);
+
+    // Act
+    var actual = await _controller.Create(newLabel);
+
+    // Assert
+    var badRequestResult = actual as BadRequestObjectResult;
+    Assert.IsNotNull(actual);
+    Assert.AreEqual(400, badRequestResult.StatusCode);
+}
+
+```
+
+- Kiểm tra với dữ liệu trùng lặp
 
 Số lượng ước tính: 2-3 tests
 
-
-
-```csharp
-
-
-
-```
 Read (GET)
-- Kiểm tra thành công: Lấy dữ liệu khi có bản ghi
 
+- Kiểm tra thành công: Lấy dữ liệu khi có bản ghi
 
 ```csharp
 
@@ -741,9 +817,7 @@ Read (GET)
         }
 ```
 
-- Kiểm tra thất bại: Lấy dữ liệu khi không có bản ghi 
-Số lượng ước tính: 2-3 tests.
-
+- Kiểm tra thất bại: Lấy dữ liệu khi không có bản ghi
 
 ```csharp
         [TestMethod()]
@@ -760,10 +834,15 @@ Số lượng ước tính: 2-3 tests.
         }
 
 ```
+
+Số lượng ước tính: 2-3 tests.
+
 - Kiểm tra phân trang, lọc, sắp xếp .(nếu có)
 
 Update (PUT/PATCH)
+
 - Kiểm tra thành công: Cập nhật dữ liệu hợp lệ.
+
 ```csharp
 
  [TestMethod()]
@@ -813,7 +892,7 @@ Update (PUT/PATCH)
 
 
  }
- ```
+```
 
 - Kiểm tra cập nhật bản ghi không tồn tại.
 
@@ -822,14 +901,56 @@ Update (PUT/PATCH)
 
 
 ```
+
 Số lượng ước tính: 2-3 tests.
 Delete (DELETE)
+
 - Kiểm tra thành công: Xóa bản ghi tồn tại.
-- Kiểm tra thất bại: Xóa bản ghi không tồn tại 
 
 ```csharp
+[TestMethod()]
+public async Task Delete_Success_Test()
+{
+    // Arrange
+    var labelId = Guid.NewGuid().ToString();
 
+    
+
+    var _controller = new LabelsController(mockService.Object);
+
+    // Act
+    var actual = await _controller.Delete(labelId);
+
+    // Assert
+    var noContentResult = actual as NoContentResult;
+    Assert.IsNotNull(actual);
+    Assert.AreEqual(204, noContentResult.StatusCode);
+}
 
 
 ```
 
+- Kiểm tra thất bại: Xóa bản ghi không tồn tại
+
+```csharp
+[TestMethod()]
+public async Task Delete_Fail_Test()
+{
+    // Arrange
+    var labelId = Guid.NewGuid().ToString(); // Non-existent ID
+
+   
+
+    var _controller = new LabelsController(mockService.Object);
+
+    // Act
+    var actual = await _controller.Delete(labelId);
+
+    // Assert
+    var notFoundResult = actual as NotFoundResult;
+    Assert.IsNotNull(actual);
+    Assert.AreEqual(404, notFoundResult.StatusCode);
+}
+
+
+```
