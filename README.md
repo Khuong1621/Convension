@@ -654,7 +654,7 @@ public class CmmsAssetController : ApiController
 - Quy tắc chung: 
     +   Inject Service phải có unsubcribeAll ở giai đoạn destroy của component.
     +   Mỗi tính năng là một module, routing riêng, đặc biệt hơn làm 1 component standalone.
-    +   Biến loading là cần thiết đối với tác vụ cần chờ phản hồi từ server , cập nhật biến loading bằng .fnalize(Rxjs).
+    +   Biến loading( đặt tên là isLoading :bool) là cần thiết đối với tác vụ cần chờ phản hồi từ server , cập nhật biến loading bằng .fnalize(Rxjs).
     +   Mat component sẽ là thành phần chính. Màu primary thì phải ghi primary , phân biệt với màu thường.
     +   Nztable phân trang , index phải đi cùng với PageSize và PageNumber.
     +   Hạn chế Import ShareModule , sẽ phải nạp module không cần thiết cho component.
